@@ -1,0 +1,25 @@
+{
+  "builders": [{
+    "name": "{{user `name`}}",
+    "parallels_tools_flavor": "lin",
+    "ssh_username": "{{user `user`}}",
+    "ssh_password": "{{user `password`}}",
+    "ssh_timeout": "60s",
+    "source_path": "./pvm/parrotsec-base.pvm",
+    "shutdown_command": "echo {{user `password`}} | sudo -S shutdown -P now",
+    "type": "parallels-pvm",
+    "vm_name": "{{user `name`}}"
+  }],
+  "post-processors": ["vagrant"],
+  "provisioners": [{
+    "execute_command": "echo {{user `password`}} | sudo -S sh -c '{{ .Vars }} {{ .Path }}'",
+    "scripts": ["scripts/update.sh"],
+    "type": "shell"
+  }],
+  "variables": {
+    "name": "ParrotSec-Packer",
+    "password": "vagrant",
+    "user": "vagrant"
+  }
+}
+

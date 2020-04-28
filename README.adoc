@@ -1,0 +1,9 @@
+= ParrotSec + Parallels
+
+== Build
+
+Install packer [Packer](https://www.packer.io), Parallels Desktop, and Parallels Virtualization SDK.
+
+Run `packer build packer.json`
+
+Vagrant box for parallels is created at `packer_ParrotSec-Packer_parallels.box`
